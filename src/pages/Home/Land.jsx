@@ -1,14 +1,14 @@
 import React from "react";
-import "./App.css";
-import logo from "./images/logo.svg";
-import logo2 from "./images/logo2.svg";
-import easy from "./images/easy.svg";
-import device from "./images/devices.svg";
-import reliable from "./images/reliable.svg";
-import security from "./images/security.svg";
-import shortend from "./images/shortend.svg";
-import statistics from "./images/statistics.svg";
-import Login from "./Login";
+import "../../App.css";
+import logo from "../../images/logo.svg";
+import logo2 from "../../images/logo2.svg";
+import easy from "../../images/easy.svg";
+import device from "../../images/devices.svg";
+import reliable from "../../images/reliable.svg";
+import security from "../../images/security.svg";
+import shortend from "../../images/shortend.svg";
+import statistics from "../../images/statistics.svg";
+import Login from "./Login/Login";
 
 export default function Land() {
   return (

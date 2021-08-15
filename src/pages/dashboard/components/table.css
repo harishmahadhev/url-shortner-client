@@ -1,0 +1,72 @@
+.table-wrapper {
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow2);
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 400px;
+    border-spacing: 0;
+}
+
+thead {
+    background-color: var(--txt-white);
+    color: var(--main-color);
+}
+
+tr {
+    text-align: left;
+}
+
+th,
+td {
+    text-transform: capitalize;
+    padding: 15px 10px;
+    font-size: 15px;
+}
+
+td {
+    font-size: 12px;
+}
+
+tbody>tr:hover {
+    background-color: var(--second-color);
+    color: var(--txt-white);
+}
+
+.tablePagination {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.tablePaginationItem~.tablePaginationItem {
+    margin-left: 10px;
+}
+
+.tablePaginationItem {
+    font-size: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tablePaginationItem:hover {
+    color: var(--txt-white);
+    background-color: var(--second-color);
+}
+
+.tablePaginationItem.active,
+.tablePaginationItem.active:hover {
+    background-color: var(--second-color);
+    color: var(--txt-white);
+    font-weight: 600;
+}

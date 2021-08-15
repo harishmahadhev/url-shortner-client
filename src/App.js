@@ -1,11 +1,18 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './Home';
+import Layout from './pages/dashboard/components/Layout';
+import Home from './pages/Home/Home';
 function App() {
   return (
     <Switch>
-      <Home />
-    </Switch>
+
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/dash">
+        <Layout />
+      </Route>
+    </Switch >
   );
 }
 

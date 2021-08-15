@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import Footer from "./Footer";
+import "../../App.css";
 import Navbar from "./Navbar";
 import Land from "./Land";
 export default function Home() {
@@ -10,7 +9,9 @@ export default function Home() {
       <div className="body">
         <Land />
       </div>
-      <Footer />
+      <div className="footer">
+        Copyrights &#169; HasH 2021 - Tool to shorten a long link.
+      </div>
     </div>
   );
 }
