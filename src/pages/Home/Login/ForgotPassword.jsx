@@ -28,7 +28,6 @@ export default function ForgotPassword() {
       setLoading(false);
     }
   };
-
   const resetSubmit = (data) => {
     forgot(data);
   };

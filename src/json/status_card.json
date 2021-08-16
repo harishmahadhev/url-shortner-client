@@ -1,22 +1,18 @@
 [
   {
     "icon": "fa fa-users",
-    "count": "108",
     "title": "Your Links"
   },
   {
     "icon": "fa fa-user-plus",
-    "count": "80",
     "title": "Your Clicks"
   },
   {
     "icon": "fa fa-link",
-    "count": "90",
     "title": "Overall Links"
   },
   {
     "icon": "fa fa-binoculars",
-    "count": "90",
     "title": "Overall Clicks"
   }
 ]

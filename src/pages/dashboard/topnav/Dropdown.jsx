@@ -1,72 +1,58 @@
-import { Avatar, Badge, IconButton, Popover } from "@material-ui/core";
-import { ExitToApp, Notifications, PersonRounded } from "@material-ui/icons";
+import { Avatar } from "@material-ui/core";
 import React, { useContext } from "react";
-import { createRef } from "react";
-import { Link } from "react-router-dom";
 import "../../../App.css";
-import { varCtx } from "../../../shared";
+import { userName, varCtx } from "../../../shared";
+import { useRef } from "react";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
+const clickOutsideRef = (content_ref, toggle_ref) => {
+  document.addEventListener("mousedown", (e) => {
+    if (toggle_ref.current && toggle_ref.current.contains(e.target)) {
+      content_ref.current.classList.toggle("active");
+    } else {
+      if (content_ref.current && !content_ref.current.contains(e.target)) {
+        content_ref.current.classList.remove("active");
+      }
+    }
+  });
+};
 
 export default function Dropdown(props) {
-  const { auth, setAuth } = useContext(varCtx);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const history = useHistory();
+  const { setAuth } = useContext(varCtx);
   const logout = () => {
     setAuth(false);
+    Cookies.remove("--t");
+    history.push("/");
   };
-  let anchorRef = createRef();
-  const open = Boolean(anchorEl);
+  const dropdownToggle = useRef(null);
+  const dropdownContent_el = useRef(null);
+  clickOutsideRef(dropdownContent_el, dropdownToggle);
+  const handleClick = () => {
+    logout();
+  };
+
   return (
     <div className="dropdown">
       {props.children === "avatar" ? (
         <>
-          <Avatar className="topNavRightAvatar" onClick={handleClick}></Avatar>
+          <Avatar ref={dropdownToggle} className="topNavRightAvatar">
+            {userName[0]}
+          </Avatar>
+          <div ref={dropdownContent_el} className="dropdownContent">
+            <ul className="dropdownContentList">
+              <li>
+                <i className="fa fa-user" aria-hidden="true"></i>Profile
+              </li>
+              <li onClick={handleClick}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i>Log out
+              </li>
+            </ul>
+          </div>
         </>
       ) : (
-        <IconButton disableRipple className="topNavRightButton">
-          <Badge
-            style={{ color: "#455560" }}
-            badgeContent={4}
-            anchorOrigin={{ vertical: "top", horizontal: "right" }}
-          >
-            <Notifications fontSize="medium" color="secondary" />
-          </Badge>
-        </IconButton>
+        userName
       )}
-      <Popover
-        ref={anchorRef}
-        PaperProps={{ className: "popover" }}
-        className="popoverClass"
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transitionDuration="auto"
-      >
-        {props.children === "avatar" ? (
-          <ul className="topNavRightPopup">
-            <li>
-              <PersonRounded color="secondary" fontSize="inherit" />
-              Profile
-            </li>
-            <li>
-              <ExitToApp color="secondary" fontSize="inherit" />
-              Logout
-            </li>
-          </ul>
-        ) : null}
-      </Popover>
     </div>
   );
 }

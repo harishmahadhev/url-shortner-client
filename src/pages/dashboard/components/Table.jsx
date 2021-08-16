@@ -41,9 +41,6 @@ export default function Table(props) {
               {dataShow.map((item, index) => props.renderBody(item, index))}
             </tbody>
           ) : null}
-          <thead>
-            <tr></tr>
-          </thead>
         </table>
       </div>
       {pages > 1 ? (

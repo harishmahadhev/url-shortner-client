@@ -30,7 +30,9 @@ export const signinSchema = yup.object().shape({
 export const forgotSchema = yup.object().shape({
     email: yup.string().email().required("Email Required"),
 });
-
+export const urlSchema = yup.object().shape({
+    longurl: yup.string().url().required("Enter valid URL"),
+});
 export const resetSchema = yup.object().shape({
     password: yup
         .string()

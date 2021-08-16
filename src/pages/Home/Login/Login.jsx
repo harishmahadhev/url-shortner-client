@@ -36,9 +36,11 @@ export default function Login() {
   const login = async (formdata) => {
     try {
       const { data } = await api.signin(formdata);
-      Cookies.set("--t", data.token, { expires: 3, secure: true });
-      Cookies.set("--n", data.data.name, { expires: 3, secure: true });
+      Cookies.set("--t", data.token, { expires: 2, secure: true });
+      Cookies.set("--i", data.data._id, { expires: 2, secure: true });
+      Cookies.set("--n", data.data.name, { expires: 2, secure: true });
       setLoading(false);
+      setAuth(true);
       history.push("/dash/home");
     } catch (error) {
       const { data } = error.response;

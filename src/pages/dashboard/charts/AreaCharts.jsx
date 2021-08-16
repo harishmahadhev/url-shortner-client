@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../../App.css";
 import {
   AreaChart,
@@ -8,9 +8,15 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import data from "../../../json/yearData.json";
-
+import { varCtx } from "../../../shared";
+import tableData from "../../../json/yearData.json";
 export default function AreaCharts() {
+  const { urlData } = useContext(varCtx);
+  const chartData = urlData;
+  chartData.forEach((e) => {
+    e.month = new Date(e.date).getMonth();
+    e.year = new Date(e.date).getFullYear();
+  });
   return (
     <div className="areaChart">
       <h3 className="chartTitle">Year Overview</h3>
@@ -19,7 +25,7 @@ export default function AreaCharts() {
           className="chart"
           width={600}
           height={200}
-          data={data}
+          data={chartData}
           margin={{
             top: 10,
             right: 30,
@@ -29,7 +35,7 @@ export default function AreaCharts() {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
-            dataKey="month"
+            dataKey="urlcode"
             interval={0}
             tick={{ fontFamily: "lexend", fontSize: "12px" }}
           />
@@ -53,7 +59,7 @@ export default function AreaCharts() {
             }}
             dot={{ fill: "#DC143C" }}
             type="monotone"
-            dataKey="links"
+            dataKey="clicks"
             fill="#fa5573"
             stroke="#DC143C"
           />
