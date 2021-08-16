@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from "recharts";
 import { varCtx } from "../../../shared";
-import tableData from "../../../json/yearData.json";
 export default function AreaCharts() {
   const { urlData } = useContext(varCtx);
   const chartData = urlData;
