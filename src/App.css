@@ -112,9 +112,21 @@ input {
 .navbarLogo {
   display: flex;
   flex-direction: column;
-  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
   color: #DC143C;
   cursor: pointer;
+
+}
+
+.activateContainer .navbarLogo {
+  border-radius: 10px;
+  border: 3px solid var(--mail-color);
+  padding: 15px 5px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 18px;
 }
 
 .center {
@@ -285,7 +297,8 @@ input {
 
 
 
-.loginContainer .loginButton {
+.loginContainer .loginButton,
+.Activate .loginButton {
   background-color: #DC143C;
   color: white;
   text-transform: capitalize;
@@ -302,8 +315,15 @@ hr {
   margin: 5px 0;
 }
 
-.loginContainer .loginButton:hover {
+.loginContainer .loginButton:hover,
+.Activate .loginButton:hover {
   background-color: #ff5275;
+}
+
+.Activate {
+  margin-top: 30px;
+  padding: 60px;
+  flex-direction: column;
 }
 
 .loginOthers {
@@ -711,6 +731,22 @@ hr {
   color: #fff;
 }
 
+.activateContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginImg {
+  width: 200px;
+}
+
+.HelperText {
+  font-size: 13px;
+}
+
 @media screen and (max-width : 600px) {
   .loginImg {
     width: 300px;
@@ -722,12 +758,6 @@ hr {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background: #000000;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #434343, #000000);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #434343, #000000);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .sidebarLogo {

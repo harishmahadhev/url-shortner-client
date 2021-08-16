@@ -9,7 +9,7 @@ export default function Home() {
       <div className="body">
         <Land />
       </div>
-      <div className="footer">
+      <div className="footer" id="footer">
         Copyrights &#169; HasH 2021 - Tool to shorten a long link.
       </div>
     </div>

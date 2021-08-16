@@ -13,7 +13,7 @@ export const signupSchema = yup.object().shape({
         .string()
         .oneOf([yup.ref("password"), null], "Password doesn't match")
         .required("Password Required"),
-    fullname: yup.string().required("Your name is required"),
+    name: yup.string().required("Your name is required"),
 });
 
 export const signinSchema = yup.object().shape({

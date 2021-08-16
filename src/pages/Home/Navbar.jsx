@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
+import { Logo } from "../../shared";
 export default function Navbar() {
   return (
     <div className="navbar">
       <div className="navbarWrapper">
         <div className="navbarLeft">
-          <div className="navbarLogo">
-            <span>HA</span>
-            <span>SH</span>
-          </div>
+          <Logo />
         </div>
         <div className="navbarRight">
           <ul className="navbarList">
@@ -20,7 +18,9 @@ export default function Navbar() {
             <li className="navbarLinks">
               <Link to="/dash/home">Dashboard</Link>
             </li>
-            <li className="navbarLinks">About</li>
+            <li className="navbarLinks">
+              <Link to="#footer">About</Link>
+            </li>
           </ul>
         </div>
       </div>

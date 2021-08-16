@@ -7,13 +7,13 @@ import Views from "./components/Views";
 export default function DashRoutes() {
   return (
     <Switch>
-      <Route path="/dash/home">
+      <Route exact path="/dash/home">
         <DashHome />
       </Route>
-      <Route path="/dash/views">
+      <Route exact path="/dash/views">
         <Views />
       </Route>
-      <Route path="/dash/charts">
+      <Route exactpath="/dash/charts">
         <Charts />
       </Route>
     </Switch>

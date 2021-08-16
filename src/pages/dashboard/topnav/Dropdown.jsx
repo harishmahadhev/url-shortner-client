@@ -1,15 +1,24 @@
 import { Avatar, Badge, IconButton, Popover } from "@material-ui/core";
 import { ExitToApp, Notifications, PersonRounded } from "@material-ui/icons";
-import React from "react";
+import React, { useContext } from "react";
+import { createRef } from "react";
+import { Link } from "react-router-dom";
 import "../../../App.css";
+import { varCtx } from "../../../shared";
+
 export default function Dropdown(props) {
+  const { auth, setAuth } = useContext(varCtx);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const logout = () => {
+    setAuth(false);
+  };
+  let anchorRef = createRef();
   const open = Boolean(anchorEl);
   return (
     <div className="dropdown">
@@ -29,6 +38,7 @@ export default function Dropdown(props) {
         </IconButton>
       )}
       <Popover
+        ref={anchorRef}
         PaperProps={{ className: "popover" }}
         className="popoverClass"
         open={open}

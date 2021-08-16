@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import sidebarItems from "../../../json/sidebar_routes.json";
+import { Logo } from "../../../shared";
 const SidebarItem = (props) => {
   const active = props.active ? "active" : "";
   return (
@@ -19,10 +20,7 @@ export default function Sidebar(props) {
   return (
     <div className="sidebar">
       <div className="sidebarLogo">
-        <div className="navbarLogo">
-          <span>HA</span>
-          <span>SH</span>
-        </div>
+        <Logo />
         <span>URL- Shortner</span>
       </div>
       {sidebarItems.map((e, i) => (
