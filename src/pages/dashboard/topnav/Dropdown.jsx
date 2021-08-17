@@ -2,44 +2,33 @@ import { Avatar } from "@material-ui/core";
 import React, { useContext } from "react";
 import "../../../App.css";
 import { userName, varCtx } from "../../../shared";
-import { useRef } from "react";
 import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
-const clickOutsideRef = (content_ref, toggle_ref) => {
-  document.addEventListener("mousedown", (e) => {
-    if (toggle_ref.current && toggle_ref.current.contains(e.target)) {
-      content_ref.current.classList.toggle("active");
-    } else {
-      if (content_ref.current && !content_ref.current.contains(e.target)) {
-        content_ref.current.classList.remove("active");
-      }
-    }
-  });
-};
+import { useState } from "react";
 
 export default function Dropdown(props) {
   const history = useHistory();
+  const [active, setActive] = useState(false);
   const { setAuth } = useContext(varCtx);
   const logout = () => {
     setAuth(false);
     Cookies.remove("--t");
     history.push("/");
   };
-  const dropdownToggle = useRef(null);
-  const dropdownContent_el = useRef(null);
-  clickOutsideRef(dropdownContent_el, dropdownToggle);
   const handleClick = () => {
     logout();
   };
-
   return (
     <div className="dropdown">
       {props.children === "avatar" ? (
         <>
-          <Avatar ref={dropdownToggle} className="topNavRightAvatar">
+          <Avatar
+            className="topNavRightAvatar"
+            onClick={() => setActive((on) => !on)}
+          >
             {userName[0]}
           </Avatar>
-          <div ref={dropdownContent_el} className="dropdownContent">
+          <div className={`dropdownContent ${active ? "active" : null}`}>
             <ul className="dropdownContentList">
               <li>
                 <i className="fa fa-user" aria-hidden="true"></i>Profile
