@@ -38,7 +38,7 @@ function App() {
     <varCtx.Provider value={{ urlData, loading, setLoading, Message, setMessage, setAuth }}>
       <Switch>
         <ProtectedDashRoute path="/dash" auth={auth} component={Layout} />
-        <ProtectedLoginRoute path="/" auth={auth} component={Home} />
+
         <Route path="/forgotpassword">
           <ForgotPassword />
         </Route>
@@ -48,6 +48,7 @@ function App() {
         <Route exact path="/reset/:token">
           <ResetPassword />
         </Route>
+        <ProtectedLoginRoute exact path="/" auth={auth} component={Home} />
       </Switch >
     </varCtx.Provider >
   );

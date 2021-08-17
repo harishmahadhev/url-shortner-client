@@ -11,7 +11,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { Loading, varCtx } from "../../../shared";
 import Cookies from "js-cookie";
@@ -140,11 +140,17 @@ export default function Login() {
             </>
           )}
           {Message && <div className="loginError">{Message}</div>}
-          <div className="loginHelperText">
-            {isSignup
-              ? "Password must contain at least one uppercase, one number & one special characters"
-              : "Forgort Password?"}
-          </div>
+
+          {isSignup ? (
+            <div className="loginHelperText">
+              Password must contain at least one uppercase, one number & one
+              special characters
+            </div>
+          ) : (
+            <Link to="/forgotpassword">
+              <div className="loginHelperText">Forgort Password? </div>
+            </Link>
+          )}
 
           <Button type="submit" className="loginButton">
             {loading ? <Loading /> : isSignup ? "Create Account" : "Login"}

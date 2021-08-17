@@ -26,6 +26,7 @@ export default function ResetPassword() {
   const { token } = useParams();
   const history = useHistory();
   const { loading, setLoading, Message, setMessage } = useContext(varCtx);
+
   const reset = async (formdata) => {
     setLoading(true);
     try {
@@ -34,6 +35,7 @@ export default function ResetPassword() {
       setLoading(false);
       setTimeout(() => {
         history.push("/");
+        setMessage("");
       }, 1000);
     } catch (error) {
       const { data } = error.response;

@@ -1,8 +1,21 @@
 import React from "react";
-import Table from "./Table";
 import "./table.css";
 import { useContext } from "react";
 import { getHostname, Loading, varCtx } from "../../../shared";
+import ViewTable from "./ViewTable";
+import { TableCell, TableRow, withStyles } from "@material-ui/core";
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    color: "black",
+    fontWeight: 600,
+  },
+  body: {
+    fontSize: 12,
+    fontFamily: "sans-serif",
+  },
+}))(TableCell);
+
 export default function Views() {
   const { urlData, loading } = useContext(varCtx);
   const TableHead = ["", "name", "longurl", "shorturl", "clicks", "date"];
@@ -11,16 +24,16 @@ export default function Views() {
     let date = new Date(item.date).toLocaleDateString();
     let name = getHostname(item.longurl);
     return (
-      <tr key={index}>
-        <td>{index + 1}</td>
-        <td>{name}</td>
-        <td>{item.longurl}</td>
-        <td>
+      <TableRow key={index}>
+        <StyledTableCell>{index + 1}</StyledTableCell>
+        <StyledTableCell>{name}</StyledTableCell>
+        <StyledTableCell>{item.longurl}</StyledTableCell>
+        <StyledTableCell>
           <a href={item.shorturl}>{item.shorturl}</a>
-        </td>
-        <td>{item.clicks}</td>
-        <td>{date}</td>
-      </tr>
+        </StyledTableCell>
+        <StyledTableCell>{item.clicks}</StyledTableCell>
+        <StyledTableCell>{date}</StyledTableCell>
+      </TableRow>
     );
   };
   return (
@@ -30,7 +43,7 @@ export default function Views() {
         <Loading color="#455560" />
       ) : (
         <div className="viewTable">
-          <Table
+          <ViewTable
             limit="10"
             headData={TableHead}
             renderHead={(item, index) => renderHead(item, index)}

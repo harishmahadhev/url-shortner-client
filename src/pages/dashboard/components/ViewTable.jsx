@@ -1,7 +1,21 @@
+import {
+  makeStyles,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 
-export default function Table(props) {
+const useStyles = makeStyles({
+  table: {
+    backgroundColor: "white",
+    width: 100,
+  },
+});
+export default function ViewTable(props) {
   const initDataShow = props.limit
     ? props.bodyData.slice(0, Number(props.limit))
     : props.bodyData;
@@ -9,7 +23,7 @@ export default function Table(props) {
   let pages = 1;
 
   let range = [];
-
+  const classes = useStyles();
   if (props.limit !== undefined) {
     let page = Math.floor(props.bodyData.length / Number(props.limit));
     pages =
@@ -17,6 +31,7 @@ export default function Table(props) {
     range = [...Array(pages).keys()];
   }
   const [curPage, setCurPage] = useState(0);
+
   const selectPage = (page) => {
     const start = Number(props.limit) * page;
     const end = start + Number(props.limit);
@@ -25,24 +40,24 @@ export default function Table(props) {
   };
   return (
     <div className="table">
-      <div className="table-wrapper">
-        <table>
+      <TableContainer>
+        <Table className={classes.table} aria-label="customized table">
           {props.headData && props.renderHead ? (
-            <thead>
-              <tr>
+            <TableHead>
+              <TableRow>
                 {props.headData.map((item, index) =>
                   props.renderHead(item, index)
                 )}
-              </tr>
-            </thead>
+              </TableRow>
+            </TableHead>
           ) : null}
           {props.bodyData && props.renderBody ? (
-            <tbody>
+            <TableBody>
               {dataShow.map((item, index) => props.renderBody(item, index))}
-            </tbody>
+            </TableBody>
           ) : null}
-        </table>
-      </div>
+        </Table>
+      </TableContainer>
       {pages > 1 ? (
         <div className="tablePagination">
           {range.map((item, index) => (

@@ -15,6 +15,7 @@ export default function DashHome() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(urlSchema),
@@ -39,6 +40,7 @@ export default function DashHome() {
 
   const urlSubmit = (data) => {
     getshorturl(data);
+    reset();
   };
   return (
     <div className="dashboard">
@@ -70,7 +72,9 @@ export default function DashHome() {
                     {getHostname(Message.longurl)}
                   </div>
                   <div className="dashLongUrl">
-                    <a href={Message.longurl}>{Message.longurl}</a>
+                    <a href={Message.longurl} rel="noreferrer" target="_blank">
+                      {Message.longurl}
+                    </a>
                   </div>
                   <div className="dashShortUrl">
                     Short URL is

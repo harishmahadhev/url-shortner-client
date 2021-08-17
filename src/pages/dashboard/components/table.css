@@ -2,12 +2,10 @@
     padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow2);
-    overflow-y: auto;
 }
 
 table {
     width: 100%;
-    min-width: 400px;
     border-spacing: 0;
 }
 
@@ -23,12 +21,12 @@ tr {
 
 th,
 td {
-    padding: 15px 10px;
+    padding: 15px;
     font-size: 15px;
 }
 
 td {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 tbody>tr:hover {
